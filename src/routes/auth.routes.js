@@ -18,12 +18,24 @@ authRouter.get("/get-me", authController.getMe);
 /**
  * GET /api/auth/refresh-token
  */
-authRouter.get("/refresh-token", authController.refreshToken)
+authRouter.get("/refresh-token", authController.refreshToken);
 
 /**
  * POST /api/auth/logout
  * Logout User API
  */
 authRouter.post("/logout", authController.logout);
+
+/**
+ * POST api/auth/login
+ * Login User API
+ */
+authRouter.get("/login", authController.login);
+
+/**
+ * POST /api/auth/logout-all
+ * Logout All User API
+ */
+authRouter.post("/logout-all", authController.logoutAll);
 
 export default authRouter;
