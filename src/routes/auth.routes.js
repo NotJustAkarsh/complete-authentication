@@ -21,21 +21,21 @@ authRouter.get("/get-me", authController.getMe);
 authRouter.get("/refresh-token", authController.refreshToken);
 
 /**
- * POST /api/auth/logout
+ * GET /api/auth/logout
  * Logout User API
  */
-authRouter.post("/logout", authController.logout);
+authRouter.get("/logout", authController.logout);
 
 /**
  * POST api/auth/login
  * Login User API
  */
-authRouter.get("/login", authController.login);
+authRouter.post("/login", authController.login);
 
 /**
- * POST /api/auth/logout-all
+ * GET /api/auth/logout-all
  * Logout All User API
  */
-authRouter.post("/logout-all", authController.logoutAll);
+authRouter.get("/logout-all", authController.logoutAll);
 
 export default authRouter;

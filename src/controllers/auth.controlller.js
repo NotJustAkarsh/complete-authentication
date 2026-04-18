@@ -119,7 +119,7 @@ export async function login(req, res) {
     .update(refreshToken)
     .digest("hex");
 
-  const sessionId = await sessionModel.create({
+  const session = await sessionModel.create({
     user: user._id,
     refreshTokenHash,
     ip: req.ip,
@@ -129,7 +129,7 @@ export async function login(req, res) {
   const accessToken = jwt.sign(
     {
       id: user._id,
-      sessionId: session._id,
+      sessionId: session._id
     },
     config.JWT_SECRET,
     {
@@ -144,7 +144,7 @@ export async function login(req, res) {
     maxAge: 7 * 24 * 60 * 60 * 1000, //7 days
   });
 
-  return res.status(200),josn({
+  return res.status(200).json({
     message: "User Logged In Successfully",
     user:{
       username: user.username,
@@ -282,8 +282,8 @@ export async function logout(req, res) {
   });
 }
 
-export async function logoutAll(res, req) {
-  const refreshToken = res.cookies.refreshToken;
+export async function logoutAll(req, res) {
+  const refreshToken = req.cookies.refreshToken;
 
   if (!refreshToken) {
     return res.status(401).json({
