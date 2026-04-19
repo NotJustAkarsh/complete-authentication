@@ -9,7 +9,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
 
-
+app.get("/", (req, res)=>{
+    res.send("Authentication System is Running🚀")
+})
 app.use("/api/auth", authRouter)
 
 export default app;
